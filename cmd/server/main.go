@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/ekiprop/coffee-app/coffee-app/coffee-server/db"
+	"github.com/ekiprop/coffee-server/db"
 	"github.com/joho/godotenv"
 )
 
@@ -48,7 +48,7 @@ func main() {
 		log.Fatal("Error connecting to Database")
 	}
 
-	defer dbConn.Close()
+	defer dbConn.DB.Close()
 
 	app := &Application{
 		Config: cfg,

@@ -4,6 +4,11 @@ import (
 	"database/sql"
 	"fmt"
 	"time"
+
+	_ "github.com/jackc/pgconn"
+	_ "github.com/jackc/pgx/stdlib"
+	_ "github.com/jackc/pgx/v4"
+	_ "github.com/lib/pq"
 )
 
 type DB struct {
