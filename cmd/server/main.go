@@ -7,6 +7,8 @@ import (
 	"os"
 
 	"github.com/ekiprop/coffee-server/db"
+	"github.com/ekiprop/coffee-server/router"
+	"github.com/ekiprop/coffee-server/services"
 	"github.com/joho/godotenv"
 )
 
@@ -16,6 +18,7 @@ type Config struct {
 
 type Application struct {
 	Config Config
+	Models services.Models
 }
 
 func (app *Application) Serve() error {
@@ -27,7 +30,8 @@ func (app *Application) Serve() error {
 	fmt.Println("API is lietening on port", port)
 
 	srv := &http.Server{
-		Addr: fmt.Sprintf(":%s", port),
+		Addr:    fmt.Sprintf(":%s", port),
+		Handler: router.Routes(),
 	}
 	return srv.ListenAndServe()
 }
@@ -52,8 +56,7 @@ func main() {
 
 	app := &Application{
 		Config: cfg,
-		//TODO: add models later
-
+		Models: services.New(dbConn.DB),
 	}
 
 	err = app.Serve()

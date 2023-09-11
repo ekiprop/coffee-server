@@ -3,6 +3,8 @@ module github.com/ekiprop/coffee-server
 go 1.21.1
 
 require (
+	github.com/go-chi/chi/v5 v5.0.10
+	github.com/go-chi/cors v1.2.1
 	github.com/jackc/pgconn v1.14.1
 	github.com/jackc/pgx v3.6.2+incompatible
 	github.com/jackc/pgx/v4 v4.18.1
